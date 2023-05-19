@@ -3,11 +3,11 @@ package edu.virginia.cs.hw3;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class AlphabeticalApportionmentFormat extends ApportionmentFormat{
+public class AlphabeticalFormat extends ApportionmentFormat{
     private Apportionment apportionment;
 
     @Override
-    public String getApportionmentString(Apportionment apportionment) {
+    public String getFormattedString(Apportionment apportionment) {
         this.apportionment = apportionment;
         return getAlphabeticalApportionmentString();
     }

@@ -31,9 +31,9 @@ public class ArgumentsHandler {
 
     private void setDefaultConfiguration() {
         config = new Configuration();
-        config.setApportionmentStrategy(new HamiltonApportionmentStrategy());
+        config.setApportionmentStrategy(new HamiltonMethod());
         config.setRepresentatives(435);
-        config.setApportionmentFormat(new AlphabeticalApportionmentFormat());
+        config.setApportionmentFormat(new AlphabeticalFormat());
     }
 
     private void configureStateReader() {

@@ -6,7 +6,6 @@ public class CSVStateReader extends StateReader {
     public static final int NAME_COLUMN_INDEX = 0;
     public static final int POPULATION_COLUMN_INDEX = 1;
     private final String filename;
-    private BufferedReader bufferedReader;
 
     public CSVStateReader(String filename) {
         if (!filename.toLowerCase().endsWith(".csv")) {
@@ -18,20 +17,20 @@ public class CSVStateReader extends StateReader {
     @Override
     public void readStates() {
         try {
-            generateBufferedReader();
-            getStatesFromRestOfFile();
+            BufferedReader bufferedReader = generateBufferedReader();
+            getStatesFromReader(bufferedReader);
             bufferedReader.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void generateBufferedReader() throws FileNotFoundException {
+    private BufferedReader generateBufferedReader() throws FileNotFoundException {
         FileReader fileReader = new FileReader(filename);
-        bufferedReader = new BufferedReader(fileReader);
+        return new BufferedReader(fileReader);
     }
 
-    private void getStatesFromRestOfFile() throws IOException {
+    private void getStatesFromReader(BufferedReader bufferedReader) throws IOException {
         for (String line = bufferedReader.readLine(); line != null; line = bufferedReader.readLine()) {
             try {
                 addStateFromLine(line);

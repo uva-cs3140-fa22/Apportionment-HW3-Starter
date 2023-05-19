@@ -2,19 +2,19 @@ package edu.virginia.cs.hw3;
 
 import java.util.*;
 
-public class HamiltonApportionmentStrategy extends ApportionmentStrategy{
+public class HamiltonMethod extends ApportionmentMethod {
 
     private List<State> stateList;
     private int targetRepresentatives;
     private double divisor;
-    private DecimalApportionment decimalApportionment;
+    private QuotaMap quotaMap;
     private Apportionment apportionment;
 
     @Override
     public Apportionment getApportionment(List<State> stateList, int representatives) {
         initializeFields(stateList, representatives);
         divisor = getDivisor();
-        decimalApportionment = getDecimalApportionment();
+        quotaMap = getDecimalApportionment();
         return getIntegerApportionment();
     }
 
@@ -34,22 +34,22 @@ public class HamiltonApportionmentStrategy extends ApportionmentStrategy{
         return (double) totalPopulation / targetRepresentatives;
     }
 
-    private DecimalApportionment getDecimalApportionment() {
-        DecimalApportionment decimalApportionment = new DecimalApportionment();
+    private QuotaMap getDecimalApportionment() {
+        QuotaMap quotaMap = new QuotaMap();
         for (State state : stateList) {
             double decimalRepresentatives = state.getPopulation() / divisor;
-            decimalApportionment.setDecimalApportionmentForState(state, decimalRepresentatives);
+            quotaMap.setDecimalApportionmentForState(state, decimalRepresentatives);
         }
-        return decimalApportionment;
+        return quotaMap;
     }
 
     private Apportionment getFirstPassApportionment() {
-        return decimalApportionment.getRoundedDownApportionment();
+        return quotaMap.getRoundedDownApportionment();
     }
 
     private void executeSecondPassApportionment() {
         int repsLeftToAllocate = getRepsLeftToAllocate();
-        Map<State, Double> remainderMap = decimalApportionment.getRemainderMap();
+        Map<State, Double> remainderMap = quotaMap.getRemainderMap();
         remainderMap.entrySet().stream()
                 .sorted((e1, e2) -> (Double.compare(e2.getValue(), e1.getValue())))
                 .limit(repsLeftToAllocate)

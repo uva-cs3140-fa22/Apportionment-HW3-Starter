@@ -2,7 +2,7 @@ package edu.virginia.cs.hw3;
 
 import java.util.*;
 
-public class HuntingtonHillApportionmentStrategy extends ApportionmentStrategy {
+public class HuntingtonHillMethod extends ApportionmentMethod {
 
     @Override
     public Apportionment getApportionment(List<State> stateList, int representatives) {

@@ -5,7 +5,7 @@ import java.util.*;
 public abstract class StateReader {
     protected List<State> stateList;
 
-    public List<State> getStates() {
+    public List<State> getStateList() {
         if (stateList == null) {
             stateList = new ArrayList<>();
             readStates();

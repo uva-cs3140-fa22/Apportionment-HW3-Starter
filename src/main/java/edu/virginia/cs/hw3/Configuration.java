@@ -1,15 +1,15 @@
 package edu.virginia.cs.hw3;
 
 public class Configuration {
-    private ApportionmentStrategy apportionmentStrategy;
+    private ApportionmentMethod apportionmentStrategy;
     private StateReader stateReader;
     private int representatives;
     private ApportionmentFormat apportionmentFormat;
-    public ApportionmentStrategy getApportionmentStrategy() {
+    public ApportionmentMethod getApportionmentMethod() {
         return apportionmentStrategy;
     }
 
-    public void setApportionmentStrategy(ApportionmentStrategy apportionmentStrategy) {
+    public void setApportionmentStrategy(ApportionmentMethod apportionmentStrategy) {
         this.apportionmentStrategy = apportionmentStrategy;
     }
 
@@ -29,7 +29,7 @@ public class Configuration {
         this.representatives = representatives;
     }
 
-    public ApportionmentFormat getApportionmentFormat() {
+    public ApportionmentFormat getFormat() {
         return apportionmentFormat;
     }
 
